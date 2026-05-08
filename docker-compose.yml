@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # ECommerce Frontend Service
+  ecommerce-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lushlather-ecommerce
+    ports:
+      - "8080:80"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./images:/usr/share/nginx/html/images:ro
+    restart: unless-stopped
+    networks:
+      - ecommerce-network
+
+  # Optional: Add a simple monitoring service
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    container_name: nginx-exporter
+    ports:
+      - "9113:9113"
+    command:
+      - -nginx.scrape-uri=http://ecommerce-frontend:80/nginx_status
+    depends_on:
+      - ecommerce-frontend
+    networks:
+      - ecommerce-network
+    profiles:
+      - monitoring
+
+networks:
+  ecommerce-network:
+    driver: bridge
+
+volumes:
+  ecommerce-images:
+    driver: local

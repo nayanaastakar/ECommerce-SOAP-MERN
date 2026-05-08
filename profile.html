@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lushlather - My Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+        
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #9b59b6;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            filter: drop-shadow(0 2px 4px rgba(155, 89, 182, 0.3));
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 10px 18px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(155, 89, 182, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .nav-link:hover::before {
+            left: 100%;
+        }
+        
+        .nav-link:hover {
+            color: #9b59b6;
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #9b59b6;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .user-avatar:hover {
+            transform: scale(1.1);
+        }
+        
+        .user-dropdown {
+            position: relative;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-top: 10px;
+        }
+        
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #2c3e50;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            border-bottom: 1px solid #f8f9fa;
+        }
+        
+        .dropdown-item:first-child {
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .dropdown-item:last-child {
+            border-radius: 0 0 10px 10px;
+            border-bottom: none;
+        }
+        
+        .dropdown-item:hover {
+            background: #f8f9fa;
+            color: #9b59b6;
+        }
+        
+        .dropdown-item i {
+            width: 20px;
+            margin-right: 10px;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #2c3e50;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .profile-container {
+            padding: 40px 0;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .profile-header {
+            background: linear-gradient(135deg, #9b59b6 0%, #e91e63 100%);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.1"/><circle cx="10" cy="50" r="1" fill="white" opacity="0.1"/><circle cx="90" cy="30" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .profile-header-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .profile-avatar-large {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .profile-info {
+            flex: 1;
+        }
+        
+        .profile-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .profile-email {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .profile-stats {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .profile-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .profile-sidebar {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            padding: 30px;
+            height: fit-content;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-item {
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .sidebar-link:hover {
+            background: #f8f9fa;
+            color: #9b59b6;
+            transform: translateX(5px);
+        }
+        
+        .sidebar-link.active {
+            background: linear-gradient(135deg, #9b59b6 0%, #e91e63 100%);
+            color: white;
+        }
+        
+        .sidebar-link i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        .profile-main {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            padding: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-title i {
+            color: #9b59b6;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-size: 0.95rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #9b59b6;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.1);
+        }
+        
+        .form-input:disabled {
+            background: #f8f9fa;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #9b59b6 0%, #e91e63 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+        
+        .orders-section {
+            margin-top: 40px;
+        }
+        
+        .order-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .order-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .order-number {
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .order-date {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .order-status {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .status-delivered {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-processing {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-shipped {
+            background: #cce5ff;
+            color: #004085;
+        }
+        
+        .order-items {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+        
+        .order-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        
+        .order-item-details {
+            flex: 1;
+        }
+        
+        .order-item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .order-item-quantity {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .total-label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .total-amount {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #9b59b6;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6c757d;
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            color: #e9ecef;
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .empty-state p {
+            margin-bottom: 20px;
+        }
+        
+        .alert {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Tablet Responsive Styles */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .profile-content {
+                grid-template-columns: 250px 1fr;
+                gap: 30px;
+            }
+            
+            .profile-sidebar {
+                padding: 25px;
+            }
+            
+            .profile-main {
+                padding: 30px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                gap: 0;
+                padding: 80px 20px 20px;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-link {
+                width: 100%;
+                text-align: center;
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 10px;
+            }
+            
+            .user-menu {
+                display: none;
+            }
+            
+            .container {
+                padding: 0 10px;
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .header-container {
+                padding: 5px 0;
+            }
+            
+            .profile-container {
+                padding: 20px 0;
+            }
+            
+            .profile-header {
+                padding: 40px 0;
+                margin-bottom: 20px;
+            }
+            
+            .profile-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .profile-avatar-large {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .profile-name {
+                font-size: 2rem;
+            }
+            
+            .profile-stats {
+                justify-content: center;
+                gap: 30px;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .profile-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .profile-sidebar {
+                padding: 20px;
+            }
+            
+            .profile-main {
+                padding: 25px;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .order-items {
+                flex-direction: column;
+            }
+        }
+        
+        /* Small Mobile Responsive Styles */
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .logo-icon {
+                font-size: 2rem;
+            }
+            
+            .profile-header {
+                padding: 30px 0;
+            }
+            
+            .profile-avatar-large {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .profile-name {
+                font-size: 1.8rem;
+            }
+            
+            .profile-stats {
+                gap: 20px;
+            }
+            
+            .stat-number {
+                font-size: 1.3rem;
+            }
+            
+            .profile-sidebar {
+                padding: 15px;
+            }
+            
+            .profile-main {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .form-input {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <a href="soap-simple.html" class="logo">
+                    <span class="logo-icon">🌿</span>
+                    <span>Lushlather</span>
+                </a>
+                <nav class="nav-menu">
+                    <a href="soap-simple.html" class="nav-link">Shop</a>
+                    <a href="cart.html" class="nav-link cart-badge">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span class="cart-count" id="headerCartCount">0</span>
+                    </a>
+                    <div class="user-menu">
+                        <img id="userAvatar" class="user-avatar" src="" alt="User" onclick="toggleDropdown()">
+                        <div class="user-dropdown">
+                            <div id="dropdownMenu" class="dropdown-menu">
+                                <a href="profile.html" class="dropdown-item">
+                                    <i class="fas fa-user"></i> My Profile
+                                </a>
+                                <a href="profile.html#orders" class="dropdown-item">
+                                    <i class="fas fa-shopping-bag"></i> My Orders
+                                </a>
+                                <a href="profile.html#settings" class="dropdown-item">
+                                    <i class="fas fa-cog"></i> Settings
+                                </a>
+                                <a href="#" class="dropdown-item" onclick="handleLogout(event)">
+                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="profile-container">
+        <div class="container">
+            <div class="profile-header">
+                <div class="profile-header-content">
+                    <img id="profileAvatar" class="profile-avatar-large" src="" alt="Profile">
+                    <div class="profile-info">
+                        <h1 id="profileName" class="profile-name">Loading...</h1>
+                        <p id="profileEmail" class="profile-email">Loading...</p>
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <span id="orderCount" class="stat-number">0</span>
+                                <span class="stat-label">Orders</span>
+                            </div>
+                            <div class="stat-item">
+                                <span id="wishlistCount" class="stat-number">0</span>
+                                <span class="stat-label">Wishlist</span>
+                            </div>
+                            <div class="stat-item">
+                                <span id="memberSince" class="stat-number">0</span>
+                                <span class="stat-label">Member Since</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-content">
+                <aside class="profile-sidebar">
+                    <ul class="sidebar-menu">
+                        <li class="sidebar-item">
+                            <a href="#personal-info" class="sidebar-link active" onclick="showSection('personal-info', this)">
+                                <i class="fas fa-user"></i> Personal Information
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#orders" class="sidebar-link" onclick="showSection('orders', this)">
+                                <i class="fas fa-shopping-bag"></i> Order History
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#wishlist" class="sidebar-link" onclick="showSection('wishlist', this)">
+                                <i class="fas fa-heart"></i> Wishlist
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#addresses" class="sidebar-link" onclick="showSection('addresses', this)">
+                                <i class="fas fa-map-marker-alt"></i> Addresses
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#settings" class="sidebar-link" onclick="showSection('settings', this)">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+
+                <div class="profile-main">
+                    <div id="alertMessage" class="alert"></div>
+                    
+                    <!-- Personal Information Section -->
+                    <section id="personal-info-section" class="profile-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-user"></i> Personal Information
+                        </h2>
+                        
+                        <form id="profileForm" onsubmit="handleProfileUpdate(event)">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label" for="firstName">First Name</label>
+                                    <input type="text" id="firstName" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" class="form-input" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email Address</label>
+                                <input type="email" id="email" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="phone">Phone Number</label>
+                                <input type="tel" id="phone" class="form-input">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="bio">Bio</label>
+                                <textarea id="bio" class="form-input form-textarea" placeholder="Tell us about yourself..."></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" onclick="cancelEdit()">
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Save Changes
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+                    
+                    <!-- Order History Section -->
+                    <section id="orders-section" class="profile-section orders-section" style="display: none;">
+                        <h2 class="section-title">
+                            <i class="fas fa-shopping-bag"></i> Order History
+                        </h2>
+                        
+                        <div id="ordersList">
+                            <!-- Orders will be loaded here -->
+                        </div>
+                    </section>
+                    
+                    <!-- Wishlist Section -->
+                    <section id="wishlist-section" class="profile-section" style="display: none;">
+                        <h2 class="section-title">
+                            <i class="fas fa-heart"></i> My Wishlist
+                        </h2>
+                        
+                        <div id="wishlistItems">
+                            <!-- Wishlist items will be loaded here -->
+                        </div>
+                    </section>
+                    
+                    <!-- Addresses Section -->
+                    <section id="addresses-section" class="profile-section" style="display: none;">
+                        <h2 class="section-title">
+                            <i class="fas fa-map-marker-alt"></i> Shipping Addresses
+                        </h2>
+                        
+                        <div id="addressesList">
+                            <!-- Addresses will be loaded here -->
+                        </div>
+                    </section>
+                    
+                    <!-- Settings Section -->
+                    <section id="settings-section" class="profile-section" style="display: none;">
+                        <h2 class="section-title">
+                            <i class="fas fa-cog"></i> Account Settings
+                        </h2>
+                        
+                        <form id="settingsForm" onsubmit="handleSettingsUpdate(event)">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="checkbox" id="emailNotifications"> Email Notifications
+                                </label>
+                                <p style="color: #6c757d; font-size: 0.9rem; margin-top: 5px;">
+                                    Receive order updates and promotional emails
+                                </p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="checkbox" id="smsNotifications"> SMS Notifications
+                                </label>
+                                <p style="color: #6c757d; font-size: 0.9rem; margin-top: 5px;">
+                                    Get text messages about your orders
+                                </p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Newsletter Subscription</label>
+                                <select id="newsletterFrequency" class="form-input">
+                                    <option value="never">Never</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="monthly">Monthly</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Language</label>
+                                <select id="language" class="form-input">
+                                    <option value="en">English</option>
+                                    <option value="es">Spanish</option>
+                                    <option value="fr">French</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Save Settings
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #e9ecef;">
+                            <h3 style="color: #e74c3c; margin-bottom: 20px;">Danger Zone</h3>
+                            <button class="btn btn-danger" onclick="handleDeleteAccount()">
+                                <i class="fas fa-trash"></i> Delete Account
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('active');
+        }
+
+        // User dropdown toggle
+        function toggleDropdown(event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.classList.toggle('active');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const userDropdown = document.querySelector('.user-dropdown');
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            
+            if (!userDropdown.contains(event.target) && dropdownMenu.classList.contains('active')) {
+                dropdownMenu.classList.remove('active');
+            }
+        });
+
+        // Section navigation
+        function showSection(sectionId, linkElement) {
+            // Hide all sections
+            document.querySelectorAll('.profile-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Remove active class from all links
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId + '-section').style.display = 'block';
+            linkElement.classList.add('active');
+            
+            // Load section-specific data
+            if (sectionId === 'orders') {
+                loadOrders();
+            } else if (sectionId === 'wishlist') {
+                loadWishlist();
+            } else if (sectionId === 'addresses') {
+                loadAddresses();
+            }
+        }
+
+        // Load user data
+        function loadUserData() {
+            const user = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user'));
+            
+            if (!user) {
+                window.location.href = 'login.html?return=' + encodeURIComponent(window.location.href);
+                return;
+            }
+            
+            // Update profile header
+            document.getElementById('profileName').textContent = user.name || 'User';
+            document.getElementById('profileEmail').textContent = user.email || 'No email';
+            document.getElementById('profileAvatar').src = user.avatar || `https://picsum.photos/seed/${user.email}/100/100.jpg`;
+            document.getElementById('userAvatar').src = user.avatar || `https://picsum.photos/seed/${user.email}/100/100.jpg`;
+            
+            // Update stats
+            document.getElementById('orderCount').textContent = user.orders?.length || 0;
+            document.getElementById('wishlistCount').textContent = user.wishlist?.length || 0;
+            
+            if (user.createdAt) {
+                const memberYear = new Date(user.createdAt).getFullYear();
+                document.getElementById('memberSince').textContent = memberYear;
+            }
+            
+            // Update form fields
+            document.getElementById('firstName').value = user.firstName || '';
+            document.getElementById('lastName').value = user.lastName || '';
+            document.getElementById('email').value = user.email || '';
+            document.getElementById('phone').value = user.phone || '';
+            document.getElementById('bio').value = user.bio || '';
+            
+            // Update settings
+            document.getElementById('emailNotifications').checked = user.emailNotifications !== false;
+            document.getElementById('smsNotifications').checked = user.smsNotifications === true;
+            document.getElementById('newsletterFrequency').value = user.newsletterFrequency || 'weekly';
+            document.getElementById('language').value = user.language || 'en';
+        }
+
+        // Handle profile update
+        function handleProfileUpdate(event) {
+            event.preventDefault();
+            
+            const user = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user'));
+            
+            const updatedUser = {
+                ...user,
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                bio: document.getElementById('bio').value,
+                name: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`
+            };
+            
+            // Update storage
+            if (localStorage.getItem('user')) {
+                localStorage.setItem('user', JSON.stringify(updatedUser));
+            } else {
+                sessionStorage.setItem('user', JSON.stringify(updatedUser));
+            }
+            
+            // Reload data
+            loadUserData();
+            
+            // Show success message
+            showAlert('Profile updated successfully!', 'success');
+        }
+
+        // Handle settings update
+        function handleSettingsUpdate(event) {
+            event.preventDefault();
+            
+            const user = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user'));
+            
+            const updatedUser = {
+                ...user,
+                emailNotifications: document.getElementById('emailNotifications').checked,
+                smsNotifications: document.getElementById('smsNotifications').checked,
+                newsletterFrequency: document.getElementById('newsletterFrequency').value,
+                language: document.getElementById('language').value
+            };
+            
+            // Update storage
+            if (localStorage.getItem('user')) {
+                localStorage.setItem('user', JSON.stringify(updatedUser));
+            } else {
+                sessionStorage.setItem('user', JSON.stringify(updatedUser));
+            }
+            
+            showAlert('Settings updated successfully!', 'success');
+        }
+
+        // Load orders
+        function loadOrders() {
+            const user = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user'));
+            const orders = user.orders || [];
+            const ordersList = document.getElementById('ordersList');
+            
+            if (orders.length === 0) {
+                ordersList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-shopping-bag"></i>
+                        <h3>No orders yet</h3>
+                        <p>When you place your first order, it will appear here.</p>
+                        <a href="soap-simple.html" class="btn btn-primary">
+                            <i class="fas fa-shopping-cart"></i> Start Shopping
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+            
+            ordersList.innerHTML = orders.map(order => `
+                <div class="order-card">
+                    <div class="order-header">
+                        <div>
+                            <div class="order-number">Order #${order.id}</div>
+                            <div class="order-date">${new Date(order.date).toLocaleDateString()}</div>
+                        </div>
+                        <span class="order-status status-${order.status}">${order.status}</span>
+                    </div>
+                    <div class="order-items">
+                        ${order.items.map(item => `
+                            <div class="order-item">
+                                <img src="${item.image}" alt="${item.name}" class="order-item-image">
+                                <div class="order-item-details">
+                                    <div class="order-item-name">${item.name}</div>
+                                    <div class="order-item-quantity">Qty: ${item.quantity}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="order-total">
+                        <span class="total-label">Total:</span>
+                        <span class="total-amount">₹${order.total}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Load wishlist
+        function loadWishlist() {
+            const user = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user'));
+            const wishlist = user.wishlist || [];
+            const wishlistItems = document.getElementById('wishlistItems');
+            
+            if (wishlist.length === 0) {
+                wishlistItems.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-heart"></i>
+                        <h3>Your wishlist is empty</h3>
+                        <p>Add items to your wishlist to see them here.</p>
+                        <a href="soap-simple.html" class="btn btn-primary">
+                            <i class="fas fa-shopping-cart"></i> Browse Products
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+            
+            wishlistItems.innerHTML = `
+                <div class="product-grid">
+                    ${wishlist.map(item => `
+                        <div class="product-card">
+                            <img src="${item.image}" alt="${item.name}" class="product-image">
+                            <div class="product-info">
+                                <h3 class="product-name">${item.name}</h3>
+                                <p class="product-price">₹${item.price}</p>
+                                <button class="btn btn-primary" onclick="addToCart(${item.id})">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // Load addresses
+        function loadAddresses() {
+            const user = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user'));
+            const addresses = user.addresses || [];
+            const addressesList = document.getElementById('addressesList');
+            
+            if (addresses.length === 0) {
+                addressesList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>No addresses saved</h3>
+                        <p>Add your shipping addresses for faster checkout.</p>
+                        <button class="btn btn-primary" onclick="addAddress()">
+                            <i class="fas fa-plus"></i> Add Address
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            addressesList.innerHTML = addresses.map((address, index) => `
+                <div class="order-card">
+                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                        <div>
+                            <h4 style="margin-bottom: 10px;">${address.type}</h4>
+                            <p style="margin-bottom: 5px;">${address.street}</p>
+                            <p style="margin-bottom: 5px;">${address.city}, ${address.state} ${address.zip}</p>
+                            <p>${address.country}</p>
+                        </div>
+                        <div>
+                            <button class="btn btn-secondary" onclick="editAddress(${index})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-danger" onclick="deleteAddress(${index})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Logout handler
+        function handleLogout(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            
+            // Remove user session
+            localStorage.removeItem('user');
+            sessionStorage.removeItem('user');
+            
+            // Show success message
+            showAlert('Logged out successfully!', 'success');
+            
+            // Close dropdown
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            if (dropdownMenu) {
+                dropdownMenu.classList.remove('active');
+            }
+            
+            // Redirect to login page after a short delay
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1500);
+        }
+
+        // Delete account handler
+        function handleDeleteAccount() {
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                localStorage.removeItem('user');
+                sessionStorage.removeItem('user');
+                showAlert('Account deleted successfully!', 'success');
+                
+                setTimeout(() => {
+                    window.location.href = 'soap-simple.html';
+                }, 1000);
+            }
+        }
+
+        // Show alert
+        function showAlert(message, type) {
+            const alertDiv = document.getElementById('alertMessage');
+            alertDiv.textContent = message;
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                alertDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // Cancel edit
+        function cancelEdit() {
+            loadUserData();
+        }
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            loadUserData();
+        });
+    </script>
+</body>
+</html>
