@@ -3,1408 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">Lushlather - Premium Soap Collection</title>
+    <title id="pageTitle">Timeless Tales | Book Detail</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="images/timeless-tales-favicon.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#7B2CBF">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #f3f4f6; color: #111827; }
+        .container { max-width: 1120px; margin: 0 auto; padding: 24px; }
+        header { background: white; box-shadow: 0 10px 30px rgba(15,23,42,0.08); position: sticky; top: 0; z-index: 1000; }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 18px 24px; }
+        .logo { font-size: 1.6rem; font-weight: 800; color: #1f2937; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+        .nav { display: flex; gap: 12px; flex-wrap: wrap; }
+        .nav a { color: #4b5563; text-decoration: none; padding: 10px 16px; border-radius: 999px; transition: background 0.2s ease; }
+        .nav a:hover { background: #e0e7ff; }
+        .detail-grid { display: grid; gap: 30px; grid-template-columns: 1fr 0.9fr; margin-top: 30px; }
+        .image-card { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 18px 40px rgba(15,23,42,0.06); }
+        .image-card img { width: 100%; display: block; }
+        .detail-panel { background: white; border-radius: 24px; padding: 28px; box-shadow: 0 18px 40px rgba(15,23,42,0.06); }
+        .detail-panel h1 { font-size: 2rem; margin-bottom: 14px; }
+        .detail-panel .meta { color: #6b7280; margin-bottom: 20px; }
+        .detail-panel .price { font-size: 1.6rem; font-weight: 800; color: #ef4444; margin-bottom: 20px; }
+        .detail-panel .description { line-height: 1.8; color: #475569; margin-bottom: 24px; }
+        .btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 22px; border-radius: 16px; border: none; background: #4338ca; color: white; font-weight: 700; cursor: pointer; transition: background 0.2s ease; }
+        .btn-primary:hover { background: #3730a3; }
+        .related { margin-top: 40px; }
+        .related h2 { margin-bottom: 20px; }
+        .related-grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); }
+        .related-card { background: white; border-radius: 22px; overflow: hidden; box-shadow: 0 16px 40px rgba(15,23,42,0.06); }
+        .related-card img { width: 100%; height: 240px; object-fit: cover; }
+        .related-body { padding: 18px; }
+        .related-title { font-weight: 700; margin-bottom: 8px; }
+        .related-author { color: #6b7280; margin-bottom: 12px; }
+        .related-link { color: #4338ca; font-weight: 700; }
+        footer { margin-top: 40px; text-align: center; color: #6b7280; }
+        @media (max-width: 900px) { .detail-grid { grid-template-columns: 1fr; } }
+    
+        /* Timeless Tales brand overrides */
+        :root {
+            --tt-bg: #F8F5E9;
+            --tt-surface: #FFFFFF;
+            --tt-surface-soft: #F4EDFA;
+            --tt-purple: #7B2CBF;
+            --tt-purple-light: #C77DFF;
+            --tt-green: #52B788;
+            --tt-text: #1D1D35;
+            --tt-muted: #5A5B7A;
+            --tt-border: rgba(123,44,191,0.14);
         }
-        
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            color: #2c3e50;
-            line-height: 1.6;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .header-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 20px;
-        }
-        
-        .logo {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #9b59b6;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: transform 0.3s ease;
-        }
-        
-        .logo:hover {
-            transform: scale(1.05);
-        }
-        
-        .logo-icon {
-            font-size: 2.5rem;
-            filter: drop-shadow(0 2px 4px rgba(155, 89, 182, 0.3));
-        }
-        
-        .nav-menu {
-            display: flex;
-            gap: 35px;
-            align-items: center;
-        }
-        
-        .nav-link {
-            color: #2c3e50;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 10px 18px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(155, 89, 182, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .nav-link:hover::before {
-            left: 100%;
-        }
-        
-        .nav-link:hover {
-            color: #9b59b6;
-            background: rgba(155, 89, 182, 0.08);
-            transform: translateY(-2px);
-        }
-        
-        .nav-link.active {
-            color: white;
-            background: linear-gradient(135deg, #9b59b6, #8e44ad);
-            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
-        }
-        
-        .cart-badge {
-            position: relative;
-        }
-        
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #e74c3c;
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 2px 6px;
-            border-radius: 10px;
-            min-width: 18px;
-            text-align: center;
-        }
-        
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #9b59b6;
-            cursor: pointer;
-            padding: 5px;
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 280px;
-                height: 100vh;
-                background: white;
-                flex-direction: column;
-                gap: 0;
-                padding: 80px 20px 20px;
-                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
-                transition: right 0.3s ease;
-                z-index: 999;
-            }
-            
-            .nav-menu.active {
-                right: 0;
-            }
-            
-            .nav-link {
-                width: 100%;
-                text-align: center;
-                padding: 15px;
-                border-radius: 10px;
-                margin-bottom: 10px;
-            }
-        }
-        
-        .back-link {
-            color: #6c757d;
-            text-decoration: none;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: color 0.3s ease;
-        }
-        
-        .back-link:hover {
-            color: #9b59b6;
-        }
-        
-        .product-detail {
-            padding: 60px 0;
-        }
-        
-        .product-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-        
-        .product-image-section {
-            position: sticky;
-            top: 100px;
-        }
-        
-        .main-image {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        
-        .thumbnail-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-        
-        .thumbnail {
-            width: 100%;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .thumbnail:hover {
-            transform: scale(1.05);
-            border-color: #9b59b6;
-        }
-        
-        .product-info-section {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        }
-        
-        .product-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-        
-        .product-rating {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .stars {
-            color: #ffc107;
-        }
-        
-        .rating-count {
-            color: #6c757d;
-            font-size: 0.9rem;
-        }
-        
-        .badge {
-            display: inline-block;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-right: 8px;
-            text-transform: uppercase;
-        }
-        
-        .badge-new {
-            background: #28a745;
-            color: white;
-        }
-        
-        .badge-sale {
-            background: #dc3545;
-            color: white;
-        }
-        
-        .badge-organic {
-            background: #17a2b8;
-            color: white;
-        }
-        
-        .product-price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #9b59b6;
-            margin: 20px 0;
-        }
-        
-        .original-price {
-            text-decoration: line-through;
-            color: #999;
-            margin-left: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .product-description {
-            color: #6c757d;
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-        
-        .product-features {
-            margin-bottom: 30px;
-        }
-        
-        .feature-list {
-            list-style: none;
-        }
-        
-        .feature-item {
-            padding: 8px 0;
-            border-bottom: 1px solid #e9ecef;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .feature-item:last-child {
-            border-bottom: none;
-        }
-        
-        .feature-icon {
-            color: #9b59b6;
-            width: 20px;
-        }
-        
-        .quantity-selector {
-            margin-bottom: 30px;
-        }
-        
-        .quantity-label {
-            font-weight: 600;
-            margin-bottom: 10px;
-            display: block;
-        }
-        
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .quantity-btn {
-            background: #f8f9fa;
-            border: 1px solid #dee2e6;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .quantity-btn:hover {
-            background: #e9ecef;
-            border-color: #9b59b6;
-        }
-        
-        .quantity-input {
-            width: 60px;
-            height: 40px;
-            text-align: center;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .btn-primary {
-            background: #9b59b6;
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: #8e44ad;
-            transform: translateY(-2px);
-        }
-        
-        .btn-secondary {
-            background: #f8f9fa;
-            color: #2c3e50;
-            border: 1px solid #dee2e6;
-        }
-        
-        .btn-secondary:hover {
-            background: #e9ecef;
-            border-color: #9b59b6;
-        }
-        
-        .product-tabs {
-            margin-top: 40px;
-        }
-        
-        .tab-nav {
-            display: flex;
-            border-bottom: 2px solid #e9ecef;
-            margin-bottom: 30px;
-        }
-        
-        .tab-btn {
-            background: none;
-            border: none;
-            padding: 15px 20px;
-            font-weight: 600;
-            color: #6c757d;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-        }
-        
-        .tab-btn.active {
-            color: #9b59b6;
-            border-bottom-color: #9b59b6;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .related-products {
-            margin-top: 60px;
-        }
-        
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: #2c3e50;
-        }
-        
-        .related-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .related-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .related-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .related-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .related-info {
-            padding: 20px;
-        }
-        
-        .related-name {
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        .related-price {
-            color: #9b59b6;
-            font-weight: 700;
-        }
-        
-        /* Tablet Responsive Styles */
-        @media (max-width: 1024px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            .product-container {
-                gap: 40px;
-            }
-            
-            .product-image-section {
-                padding: 20px;
-            }
-            
-            .product-details {
-                padding: 20px;
-            }
-            
-            .product-title {
-                font-size: 2rem;
-            }
-            
-            .product-price {
-                font-size: 1.8rem;
-            }
-            
-            .related-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-        /* Mobile Responsive Styles */
-        @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 280px;
-                height: 100vh;
-                background: white;
-                flex-direction: column;
-                gap: 0;
-                padding: 80px 20px 20px;
-                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
-                transition: right 0.3s ease;
-                z-index: 999;
-            }
-            
-            .nav-menu.active {
-                right: 0;
-            }
-            
-            .nav-link {
-                width: 100%;
-                text-align: center;
-                padding: 15px;
-                border-radius: 10px;
-                margin-bottom: 10px;
-            }
-            
-            .container {
-                padding: 0 10px;
-            }
-            
-            .logo {
-                font-size: 1.8rem;
-            }
-            
-            .header-container {
-                padding: 5px 0;
-            }
-            
-            .product-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                margin: 30px 0;
-            }
-            
-            .product-image-section {
-                position: static;
-                padding: 15px;
-            }
-            
-            .main-product-image {
-                height: 300px;
-            }
-            
-            .thumbnail-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 8px;
-            }
-            
-            .thumbnail {
-                height: 60px;
-            }
-            
-            .product-details {
-                padding: 15px;
-            }
-            
-            .product-title {
-                font-size: 1.5rem;
-                margin-bottom: 15px;
-            }
-            
-            .product-price {
-                font-size: 1.5rem;
-                margin-bottom: 15px;
-            }
-            
-            .product-description {
-                font-size: 0.9rem;
-                margin-bottom: 20px;
-            }
-            
-            .product-features {
-                margin-bottom: 20px;
-            }
-            
-            .feature-item {
-                font-size: 0.85rem;
-                margin-bottom: 8px;
-            }
-            
-            .quantity-selector {
-                margin-bottom: 20px;
-            }
-            
-            .quantity-controls {
-                width: 120px;
-            }
-            
-            .quantity-btn {
-                width: 30px;
-                height: 30px;
-                font-size: 0.9rem;
-            }
-            
-            .quantity {
-                font-size: 0.9rem;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-                padding: 12px 20px;
-                font-size: 0.9rem;
-            }
-            
-            .product-tabs {
-                margin-top: 30px;
-            }
-            
-            .tab-buttons {
-                flex-direction: column;
-                gap: 5px;
-            }
-            
-            .tab-btn {
-                border-radius: 8px;
-                text-align: center;
-            }
-            
-            .tab-content {
-                padding: 20px;
-            }
-            
-            .tab-content h3 {
-                font-size: 1.2rem;
-                margin-bottom: 15px;
-            }
-            
-            .tab-content p {
-                font-size: 0.9rem;
-            }
-            
-            .related-products {
-                margin-top: 40px;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-                margin-bottom: 25px;
-            }
-            
-            .related-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-            
-            .related-product {
-                padding: 15px;
-            }
-            
-            .related-image {
-                height: 120px;
-            }
-            
-            .related-name {
-                font-size: 0.9rem;
-            }
-            
-            .related-price {
-                font-size: 1rem;
-            }
-            
-            .footer {
-                padding: 30px 0;
-                margin-top: 40px;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 15px;
-            }
-        }
-        
-        /* Small Mobile Responsive Styles */
-        @media (max-width: 480px) {
-            .logo {
-                font-size: 1.5rem;
-            }
-            
-            .logo-icon {
-                font-size: 2rem;
-            }
-            
-            .product-container {
-                margin: 20px 0;
-            }
-            
-            .main-product-image {
-                height: 250px;
-            }
-            
-            .thumbnail {
-                height: 50px;
-            }
-            
-            .product-title {
-                font-size: 1.3rem;
-            }
-            
-            .product-price {
-                font-size: 1.3rem;
-            }
-            
-            .product-description {
-                font-size: 0.85rem;
-            }
-            
-            .feature-item {
-                font-size: 0.8rem;
-            }
-            
-            .quantity-controls {
-                width: 100px;
-            }
-            
-            .quantity-btn {
-                width: 25px;
-                height: 25px;
-                font-size: 0.8rem;
-            }
-            
-            .quantity {
-                font-size: 0.8rem;
-            }
-            
-            .btn {
-                padding: 10px 16px;
-                font-size: 0.8rem;
-            }
-            
-            .tab-content {
-                padding: 15px;
-            }
-            
-            .tab-content h3 {
-                font-size: 1.1rem;
-            }
-            
-            .tab-content p {
-                font-size: 0.85rem;
-            }
-            
-            .section-title {
-                font-size: 1.6rem;
-            }
-            
-            .related-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-            
-            .related-product {
-                padding: 12px;
-            }
-            
-            .related-image {
-                height: 100px;
-            }
-            
-            .related-name {
-                font-size: 0.85rem;
-            }
-            
-            .related-price {
-                font-size: 0.9rem;
-            }
-        }
+            background: var(--tt-bg) !important;
+            color: var(--tt-text) !important;
+            font-family: 'Poppins', sans-serif !important;
+        }
+        header, footer, .card, .detail-panel, .order-summary, .image-card, .related-card, .auth-wrapper, .post-card, .cart-items, .summary-row, .feature-card, .contact-grid > div, .cart-item, .product-grid > .card {
+            background: var(--tt-surface) !important;
+            border: 1px solid var(--tt-border) !important;
+            box-shadow: 0 24px 60px rgba(123,44,191,0.08) !important;
+        }
+        .logo-img { width: 44px; height: auto; display: inline-block; }
+        .logo { color: var(--tt-text) !important; display: inline-flex !important; align-items: center !important; gap: 10px !important; }
+        .nav a { color: var(--tt-text) !important; padding: 10px 16px !important; border-radius: 999px !important; transition: background 0.2s ease !important; }
+        .nav a:hover { background: rgba(123,44,191,0.1) !important; }
+        .btn-primary, .small-btn, .checkout-button, .btn { background: linear-gradient(135deg, var(--tt-purple), var(--tt-purple-light)) !important; color: white !important; }
+        .btn-secondary { background: rgba(123,44,191,0.08) !important; color: var(--tt-purple) !important; border: 1px solid rgba(123,44,191,0.18) !important; }
+        .search-card, .field input, .field select, .field textarea, .box, .cart-item { border-radius: 18px !important; }
+        .page-loader { position: fixed; inset: 0; background: rgba(248,245,233,0.96); display: flex; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.4s ease; }
+        .page-loader.loaded { opacity: 0; pointer-events: none; }
+        .loader-card { background: white; max-width: 320px; width: 100%; border-radius: 28px; padding: 30px; text-align: center; box-shadow: 0 30px 80px rgba(123,44,191,0.14); border: 1px solid rgba(123,44,191,0.12); }
+        .loader-card img { width: 72px; margin-bottom: 18px; }
+        .loader-ring { width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 50%; border: 5px solid rgba(123,44,191,0.18); border-top-color: var(--tt-purple); animation: spin 1s linear infinite; }
+        .loader-text { margin-top: 10px; color: var(--tt-muted); font-size: 0.98rem; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header-container">
-                <a href="soap-simple.html" class="logo">
-                    <span class="logo-icon">🌿</span>
-                    <span>Lushlather</span>
-                </a>
-                <nav class="nav-menu">
-                    <a href="soap-simple.html" class="nav-link">Shop</a>
-                    <a href="cart.html" class="nav-link cart-badge">
-                        <i class="fas fa-shopping-cart"></i> Cart
-                        <span class="cart-count" id="headerCartCount">0</span>
-                    </a>
-                    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </nav>
-            </div>
+
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-card">
+            <img src="images/timeless-tales-logo.svg" alt="Timeless Tales logo">
+            <div class="loader-ring"></div>
+            <div class="loader-text">Timeless Tales — A magical world of books and stories.</div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-inner">
+            <a class="logo" href="index.html"><img class="logo-img" src="images/timeless-tales-logo.svg" alt="Timeless Tales logo"> Timeless Tales</a>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="soap-simple.html">Books</a>
+                <a href="cart.html">Cart</a>
+                <a href="blog.html">Blog</a>
+                            <a href="admin.html">Admin</a>
+            </nav>
         </div>
     </header>
-
-    <main class="product-detail">
-        <div class="container">
-            <div class="product-container">
-                <div class="product-image-section">
-                    <img id="mainImage" class="main-image" src="" alt="">
-                    <div class="thumbnail-grid" id="thumbnailGrid">
-                        <!-- Thumbnails will be loaded here -->
-                    </div>
-                </div>
-                
-                <div class="product-info-section">
-                    <h1 id="productName" class="product-title"></h1>
-                    
-                    <div class="product-rating">
-                        <span class="stars" id="productStars"></span>
-                        <span class="rating-count" id="productReviews"></span>
-                    </div>
-                    
-                    <div id="productBadges"></div>
-                    
-                    <div class="product-price">
-                        <span class="price-symbol">₹</span>
-                        <span id="productPrice"></span>
-                        <span id="originalPrice" class="original-price" style="display: none;"></span>
-                    </div>
-                    
-                    <p id="productDescription" class="product-description"></p>
-                    
-                    <div class="product-features">
-                        <h3>Key Features</h3>
-                        <ul class="feature-list" id="featureList">
-                            <!-- Features will be loaded here -->
-                        </ul>
-                    </div>
-                    
-                    <div class="quantity-selector">
-                        <label class="quantity-label">Quantity:</label>
-                        <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
-                            <input type="number" id="quantityInput" class="quantity-input" value="1" min="1" max="10">
-                            <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="btn btn-primary" onclick="addToCart()">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-secondary" onclick="addToWishlist()">
-                            <i class="fas fa-heart"></i> Add to Wishlist
-                        </button>
-                    </div>
-                    
-                    <div class="product-tabs">
-                        <div class="tab-nav">
-                            <button class="tab-btn active" onclick="showTab('ingredients')">Ingredients</button>
-                            <button class="tab-btn" onclick="showTab('usage')">How to Use</button>
-                            <button class="tab-btn" onclick="showTab('shipping')">Shipping</button>
-                            <button class="tab-btn" onclick="showTab('reviews')">Reviews</button>
-                        </div>
-                        
-                        <div id="ingredients" class="tab-content active">
-                            <h4>Natural Ingredients</h4>
-                            <p id="ingredientsList"></p>
-                        </div>
-                        
-                        <div id="usage" class="tab-content">
-                            <h4>How to Use</h4>
-                            <ol>
-                                <li>Wet your skin with warm water</li>
-                                <li>Work the soap into a rich lather</li>
-                                <li>Massage gently onto skin in circular motions</li>
-                                <li>Rinse thoroughly with clean water</li>
-                                <li>Pat dry and follow with moisturizer</li>
-                            </ol>
-                        </div>
-                        
-                        <div id="shipping" class="tab-content">
-                            <h4>Shipping Information</h4>
-                            <ul>
-                                <li>Free shipping on orders above ₹499</li>
-                                <li>Standard delivery: 3-5 business days</li>
-                                <li>Express delivery: 1-2 business days</li>
-                                <li>Cash on delivery available</li>
-                                <li>Secure packaging guaranteed</li>
-                            </ul>
-                        </div>
-                        
-                        <div id="reviews" class="tab-content">
-                            <h4>Customer Reviews</h4>
-                            <div id="reviewsList"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="related-products">
-                <h2 class="section-title">Related Products</h2>
-                <div class="related-grid" id="relatedGrid">
-                    <!-- Related products will be loaded here -->
-                </div>
+    <main class="container">
+        <div class="detail-grid">
+            <div class="image-card"><img id="mainImage" src="images/book-covers/The_Fault_in_Our_Sta_17.png" alt="Book image"></div>
+            <div class="detail-panel">
+                <h1 id="bookName">Book Title</h1>
+                <div class="meta">by <span id="bookAuthor">Author Name</span> · <span id="bookGenre">Genre</span></div>
+                <div class="meta" id="publicationInfo">Published: <span id="bookPublication">Year</span> · <span id="bookPublisher">Publisher</span></div>
+                <div class="meta" id="isbnInfo">ISBN: <span id="bookISBN">0000000000000</span></div>
+                <div class="price" id="bookPrice">₹0</div>
+                <p class="description" id="bookDescription">Book description goes here. Learn more about the story, why readers love it, and what makes it unique.</p>
+                <button class="btn-primary" onclick="addToCart()"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
             </div>
         </div>
+        <section class="related">
+            <h2>Related Books</h2>
+            <div id="relatedGrid" class="related-grid"></div>
+        </section>
+        <footer>&copy; 2026 Timeless Tales. All rights reserved.</footer>
     </main>
-
     <script>
-        // Product data
+        const cartKey = 'timelessTalesCart';
         const products = [
-            {
-                id: 1,
-                name: 'Lavender Dream Soap',
-                price: 299,
-                category: 'relaxing',
-                rating: 4.8,
-                reviews: 156,
-                badge: 'organic',
-                image: 'file:///C:/Users/HP/CascadeProjects/img/2oXXLthUYcDA68ijasWm1yRxNgUD5mAleLNpYDe3w683SlBY-mAlrWSFFGSCkv84kgMBUzg5rcVVgHBvLvM91LHfkmtAXoorZgaKLzpVNN0EtgUOEMFcFlfRUTCvRFV08Cdc8rZ0tpUgnLptE2QguB2Vb_atrxz5CSWPsG5CBKoy79oUUHmEd5WR58KMG6te.jpg',
-                description: 'Relaxing lavender soap infused with essential oils for stress relief and smooth, nourished skin',
-                ingredients: 'Lavender essential oil, coconut oil, olive oil, shea butter, vitamin E',
-                features: ['Stress relief', 'Natural ingredients', 'Moisturizing', 'Calming aroma']
-            },
-            {
-                id: 2,
-                name: 'Rose Gold Luxury Soap',
-                price: 449,
-                originalPrice: 599,
-                category: 'luxury',
-                rating: 4.9,
-                reviews: 89,
-                badge: 'sale',
-                image: 'file:///C:/Users/HP/CascadeProjects/img/ACkvnCbwfDOl0Rokap-dKStlzTjdNzqy5LBr_EHs1IAUrjxMsqDhXtInqmnrmlI6RlOJKowZIAYH5ZfKjcLGzrEL6JqgQjlwriBfuucoiVauz60QgNM4S2iSu_WvCWf5spNQ5GovB6pozzzaHULYhc9xf1hz5AVj2x207M4v5_M.jpg',
-                description: 'Premium rose-infused soap enriched with moisturizing shea butter and a luxurious floral fragrance',
-                ingredients: 'Rose extract, shea butter, coconut oil, almond oil, rose petals',
-                features: ['Luxury fragrance', 'Deep moisturizing', 'Anti-aging', 'Silky texture']
-            },
-            {
-                id: 3,
-                name: 'Eucalyptus Mint Soap',
-                price: 279,
-                category: 'refreshing',
-                rating: 4.6,
-                reviews: 234,
-                badge: 'new',
-                image: 'file:///C:/Users/HP/CascadeProjects/img/AOLZoItWoC-MRP64r2u90ykHuSDZX2-Z-tVYrrTBiqJ9nv77yIdnj3Vlavp3BQGoAzxs4y-l8kTr3stU6ppUizwOX0gIgP6Io4wy_GdegwMstTrxGuXfCm_kX8DGoRBph_qKolZ3U0RLZ8X-OD2iN-AdKJ7Pmo8Sv1QulsAMMZIpRwG560c83hLO_5wjwXp_.jpg',
-                description: 'Refreshing eucalyptus and mint soap designed for deep cleansing and cooling freshness',
-                ingredients: 'Eucalyptus oil, peppermint oil, tea tree oil, coconut oil',
-                features: ['Deep cleansing', 'Cooling effect', 'Antibacterial', 'Refreshing scent']
-            },
-            {
-                id: 4,
-                name: 'Citrus Burst Soap',
-                price: 259,
-                category: 'refreshing',
-                rating: 4.7,
-                reviews: 178,
-                badge: 'organic',
-                image: 'file:///C:/Users/HP/CascadeProjects/img/As6AP6CHxExM1H_bAAovv5GjatbhBZA86gnTc8Ms2jUhk4wWntBSvKIBOL0ADFUD3FbSvC-avHh-gfIuIoci4IopHIPSHXLWpDkUtHYgaJhLoM_f_9TA7tN8tPwYzOz1QhOZk_2ZQH66VKcfM9K3v5iWX6rTxAa8lLB3r0q7vqF7ixqR6OWtGzErGZHkYqxo.jpg',
-                description: 'Energizing citrus soap packed with vitamin C goodness for bright and healthy-looking skin',
-                ingredients: 'Orange extract, lemon oil, grapefruit seed, vitamin C, coconut oil',
-                features: ['Vitamin C rich', 'Brightening', 'Energizing', 'Antioxidant']
-            },
-            {
-                id: 5,
-                name: 'Winter Wonderland Soap',
-                price: 349,
-                category: 'hydrating',
-                rating: 4.7,
-                reviews: 198,
-                badge: 'new',
-                image: 'https://picsum.photos/seed/lushlather-winter-white-soap/280/200.jpg',
-                description: 'Hydrating winter soap blended with vanilla and cocoa butter to protect dry skin',
-                ingredients: 'Vanilla extract, cocoa butter, shea butter, jojoba oil, vitamin E',
-                features: ['Winter protection', 'Deep hydration', 'Vanilla scent', 'Nourishing']
-            },
-            {
-                id: 6,
-                name: 'Chamomile Sleep Soap',
-                price: 289,
-                category: 'relaxing',
-                rating: 4.5,
-                reviews: 167,
-                badge: 'organic',
-                image: 'https://picsum.photos/seed/lushlather-chamomile-cream-soap/280/200.jpg',
-                description: 'Gentle calming soap crafted for nighttime skincare and relaxation',
-                ingredients: 'Chamomile flowers, lavender oil, almond oil, honey extract',
-                features: ['Sleep aid', 'Calming', 'Gentle on skin', 'Natural']
-            },
-            {
-                id: 7,
-                name: 'Charcoal Detox Soap',
-                price: 319,
-                category: 'detox',
-                rating: 4.6,
-                reviews: 223,
-                badge: 'new',
-                image: 'https://picsum.photos/seed/lushlather-charcoal-black-soap/280/200.jpg',
-                description: 'Activated charcoal soap that removes dirt, oil, and impurities effectively',
-                ingredients: 'Activated charcoal, tea tree oil, coconut oil, bentonite clay',
-                features: ['Deep detox', 'Oil control', 'Pore cleansing', 'Purifying']
-            },
-            {
-                id: 8,
-                name: 'Aloe Vera Fresh Soap',
-                price: 279,
-                category: 'soothing',
-                rating: 4.8,
-                reviews: 145,
-                badge: 'organic',
-                image: 'https://picsum.photos/seed/lushlather-aloe-green-soap/280/200.jpg',
-                description: 'Soothing aloe vera soap ideal for sensitive and sun-exposed skin',
-                ingredients: 'Aloe vera gel, cucumber extract, green tea, vitamin E',
-                features: ['Soothing', 'Sun protection', 'Healing', 'Anti-inflammatory']
-            },
-            {
-                id: 9,
-                name: 'Honey Oatmeal Soap',
-                price: 299,
-                category: 'exfoliating',
-                rating: 4.7,
-                reviews: 189,
-                badge: 'organic',
-                image: 'https://picsum.photos/seed/lushlather-honey-beige-soap/280/200.jpg',
-                description: 'Natural exfoliating soap with honey and oats for soft and glowing skin',
-                ingredients: 'Raw honey, colloidal oatmeal, coconut oil, almond oil',
-                features: ['Natural exfoliation', 'Moisturizing', 'Gentle cleansing', 'Glowing skin']
-            },
-            {
-                id: 10,
-                name: 'Coffee Scrub Soap',
-                price: 269,
-                category: 'exfoliating',
-                rating: 4.5,
-                reviews: 156,
-                badge: 'new',
-                image: 'https://picsum.photos/seed/lushlather-coffee-brown-soap/280/200.jpg',
-                description: 'Coffee bean exfoliating soap that refreshes and brightens tired skin',
-                ingredients: 'Ground coffee beans, coconut oil, shea butter, vitamin C',
-                features: ['Exfoliating', 'Brightening', 'Cellulite reduction', 'Energizing']
-            },
-            {
-                id: 11,
-                name: 'Coconut Cream Soap',
-                price: 329,
-                category: 'hydrating',
-                rating: 4.9,
-                reviews: 234,
-                badge: 'organic',
-                image: 'https://picsum.photos/seed/lushlather-coconut-white-soap/280/200.jpg',
-                description: 'Creamy coconut milk soap providing intense hydration and nourishment',
-                ingredients: 'Coconut milk, coconut oil, shea butter, vitamin E',
-                features: ['Intense hydration', 'Nourishing', 'Tropical scent', 'Silky smooth']
-            },
-            {
-                id: 12,
-                name: 'Green Tea Purity Soap',
-                price: 289,
-                category: 'antioxidant',
-                rating: 4.6,
-                reviews: 178,
-                badge: 'organic',
-                image: 'https://picsum.photos/seed/lushlather-green-tea-soap/280/200.jpg',
-                description: 'Antioxidant-rich green tea soap that rejuvenates and refreshes skin',
-                ingredients: 'Green tea extract, matcha powder, jojoba oil, vitamin C',
-                features: ['Antioxidant rich', 'Anti-aging', 'Refreshing', 'Skin rejuvenation']
-            },
-            {
-                id: 13,
-                name: 'Sandalwood Royale Soap',
-                price: 499,
-                originalPrice: 649,
-                category: 'luxury',
-                rating: 4.8,
-                reviews: 145,
-                badge: 'sale',
-                image: 'https://picsum.photos/seed/lushlather-sandalwood-brown-soap/280/200.jpg',
-                description: 'Traditional sandalwood soap with a rich earthy aroma and luxurious feel',
-                ingredients: 'Sandalwood oil, cedarwood oil, patchouli oil, shea butter',
-                features: ['Luxury scent', 'Earthy aroma', 'Moisturizing', 'Traditional']
-            },
-            {
-                id: 14,
-                name: 'Jasmine Bliss Soap',
-                price: 379,
-                category: 'luxury',
-                rating: 4.7,
-                reviews: 198,
-                badge: 'new',
-                image: 'https://picsum.photos/seed/lushlather-jasmine-pink-soap/280/200.jpg',
-                description: 'Refreshing jasmine soap with a romantic floral fragrance and silky texture',
-                ingredients: 'Jasmine essential oil, rose oil, silk proteins, almond oil',
-                features: ['Romantic scent', 'Silky texture', 'Luxury feel', 'Floral']
-            },
-            {
-                id: 15,
-                name: 'Ocean Breeze Soap',
-                price: 319,
-                category: 'refreshing',
-                rating: 4.5,
-                reviews: 167,
-                badge: 'new',
-                image: 'https://picsum.photos/seed/lushlather-ocean-blue-soap/280/200.jpg',
-                description: 'Fresh aquatic soap inspired by cool ocean waves and sea minerals',
-                ingredients: 'Sea salt, seaweed extract, marine minerals, coconut oil',
-                features: ['Ocean fresh', 'Mineral rich', 'Refreshing', 'Purifying']
-            },
-            {
-                id: 16,
-                name: 'Strawberry Milk Soap',
-                price: 299,
-                category: 'fruity',
-                rating: 4.6,
-                reviews: 189,
-                badge: 'organic',
-                image: 'https://picsum.photos/seed/lushlather-strawberry-pink-soap/280/200.jpg',
-                description: 'Sweet fruity soap enriched with milk proteins for smooth and soft skin',
-                ingredients: 'Strawberry extract, milk proteins, coconut oil, vitamin C',
-                features: ['Fruity scent', 'Milk proteins', 'Softening', 'Brightening']
-            },
-            {
-                id: 17,
-                name: 'Turmeric Glow Soap',
-                price: 319,
-                category: 'brightening',
-                rating: 4.7,
-                reviews: 145,
-                badge: 'organic',
-                image: 'https://picsum.photos/seed/lushlather-turmeric-yellow-soap/280/200.jpg',
-                description: 'Herbal turmeric soap that helps brighten and even out skin tone naturally',
-                ingredients: 'Turmeric powder, saffron extract, almond oil, vitamin E',
-                features: ['Skin brightening', 'Even tone', 'Anti-inflammatory', 'Herbal']
-            },
-            {
-                id: 18,
-                name: 'Neem Tulsi Care Soap',
-                price: 279,
-                category: 'medicinal',
-                rating: 4.4,
-                reviews: 156,
-                badge: 'organic',
-                image: 'https://picsum.photos/seed/lushlather-neem-green-soap/280/200.jpg',
-                description: 'Ayurvedic antibacterial soap specially made for acne-prone and oily skin',
-                ingredients: 'Neem leaf extract, tulsi holy basil, tea tree oil, aloe vera',
-                features: ['Antibacterial', 'Acne control', 'Ayurvedic', 'Oil control']
-            },
-            {
-                id: 19,
-                name: 'Vanilla Almond Soap',
-                price: 339,
-                category: 'moisturizing',
-                rating: 4.8,
-                reviews: 223,
-                badge: 'new',
-                image: 'https://picsum.photos/seed/lushlather-vanilla-cream-soap/280/200.jpg',
-                description: 'Warm vanilla and almond oil soap with a soft moisturizing texture',
-                ingredients: 'Vanilla extract, almond oil, shea butter, milk proteins',
-                features: ['Moisturizing', 'Warm scent', 'Soft texture', 'Nourishing']
-            },
-            {
-                id: 20,
-                name: 'Rosemary Herbal Soap',
-                price: 289,
-                category: 'herbal',
-                rating: 4.6,
-                reviews: 178,
-                badge: 'organic',
-                image: 'https://picsum.photos/seed/lushlather-rosemary-green-soap/280/200.jpg',
-                description: 'Herbal rosemary soap promoting refreshed, healthy, and naturally glowing skin',
-                ingredients: 'Rosemary extract, peppermint oil, coconut oil, vitamin E',
-                features: ['Herbal benefits', 'Refreshing', 'Glowing skin', 'Natural']
-            }
+            { id: 1, name: 'To Kill a Mockingbird', author: 'Harper Lee', publicationYear: 1960, genre: 'Fiction', publisher: 'J.B. Lippincott & Co.', isbn: '9780061120084', price: 399, image: 'images/book-covers/To_Kill_a_Mockingbir_1.png', description: 'A novel about racial injustice in the Deep South.' },
+            { id: 2, name: '1984', author: 'George Orwell', publicationYear: 1949, genre: 'Dystopian', publisher: 'Secker & Warburg', isbn: '9780451524935', price: 349, image: 'images/book-covers/1984_2.png', description: 'A story of totalitarianism and surveillance.' },
+            { id: 3, name: 'Pride and Prejudice', author: 'Jane Austen', publicationYear: 1813, genre: 'Romance', publisher: 'T. Egerton', isbn: '9780141439518', price: 329, image: 'images/book-covers/Pride_and_Prejudice_3.png', description: 'A classic romance and social commentary.' },
+            { id: 4, name: 'The Great Gatsby', author: 'F. Scott Fitzgerald', publicationYear: 1925, genre: 'Classic', publisher: 'Charles Scribner\'s Sons', isbn: '9780743273565', price: 319, image: 'images/book-covers/The_Great_Gatsby_4.png', description: 'A tale of wealth and the American Dream.' },
+            { id: 5, name: 'Moby-Dick', author: 'Herman Melville', publicationYear: 1851, genre: 'Adventure', publisher: 'Harper & Brothers', isbn: '9781503280786', price: 379, image: 'images/book-covers/Moby-Dick_5.png', description: 'Captain Ahab’s obsessive quest for a whale.' },
+            { id: 6, name: 'The Hobbit', author: 'J.R.R. Tolkien', publicationYear: 1937, genre: 'Fantasy', publisher: 'George Allen & Unwin', isbn: '9780547928227', price: 389, image: 'images/book-covers/The_Hobbit_6.png', description: 'Bilbo Baggins goes on an epic adventure.' },
+            { id: 7, name: 'Harry Potter and the Sorcerer\'s Stone', author: 'J.K. Rowling', publicationYear: 1997, genre: 'Fantasy', publisher: 'Bloomsbury', isbn: '9780590353427', price: 429, image: 'images/book-covers/Harry_Potter_and_the_7.png', description: 'A young wizard discovers his destiny.' },
+            { id: 8, name: 'The Catcher in the Rye', author: 'J.D. Salinger', publicationYear: 1951, genre: 'Fiction', publisher: 'Little, Brown and Company', isbn: '9780316769488', price: 339, image: 'images/book-covers/The_Catcher_in_the_R_8.png', description: 'Teenage rebellion and alienation.' },
+            { id: 9, name: 'The Alchemist', author: 'Paulo Coelho', publicationYear: 1988, genre: 'Adventure', publisher: 'HarperTorch', isbn: '9780061122415', price: 359, image: 'images/book-covers/The_Alchemist_9.png', description: 'A shepherd follows his dream to Egypt.' },
+            { id: 10, name: 'The Da Vinci Code', author: 'Dan Brown', publicationYear: 2003, genre: 'Thriller', publisher: 'Doubleday', isbn: '9780307474278', price: 379, image: 'images/book-covers/The_Da_Vinci_Code_10.png', description: 'A mystery involving secret societies.' },
+            { id: 11, name: 'The Lord of the Rings', author: 'J.R.R. Tolkien', publicationYear: 1954, genre: 'Fantasy', publisher: 'Allen & Unwin', isbn: '9780618640157', price: 499, image: 'images/book-covers/The_Lord_of_the_Ring_11.png', description: 'An epic battle over the One Ring.' },
+            { id: 12, name: 'Brave New World', author: 'Aldous Huxley', publicationYear: 1932, genre: 'Science Fiction', publisher: 'Chatto & Windus', isbn: '9780060850524', price: 359, image: 'images/book-covers/Brave_New_World_12.png', description: 'A futuristic society driven by technology.' },
+            { id: 13, name: 'The Kite Runner', author: 'Khaled Hosseini', publicationYear: 2003, genre: 'Drama', publisher: 'Riverhead Books', isbn: '9781594631931', price: 349, image: 'images/book-covers/The_Kite_Runner_13.png', description: 'Friendship and redemption in Afghanistan.' },
+            { id: 14, name: 'Life of Pi', author: 'Yann Martel', publicationYear: 2001, genre: 'Adventure', publisher: 'Knopf Canada', isbn: '9780156027328', price: 369, image: 'images/book-covers/Life_of_Pi_14.png', description: 'A boy survives at sea with a tiger.' },
+            { id: 15, name: 'The Book Thief', author: 'Markus Zusak', publicationYear: 2005, genre: 'Historical Fiction', publisher: 'Picador', isbn: '9780375842207', price: 379, image: 'images/book-covers/The_Book_Thief_15.png', description: 'A girl steals books during WWII.' },
+            { id: 16, name: 'The Hunger Games', author: 'Suzanne Collins', publicationYear: 2008, genre: 'Dystopian', publisher: 'Scholastic Press', isbn: '9780439023528', price: 389, image: 'images/book-covers/The_Hunger_Games_16.png', description: 'A deadly televised survival competition.' },
+            { id: 17, name: 'The Fault in Our Stars', author: 'John Green', publicationYear: 2012, genre: 'Young Adult', publisher: 'Dutton Books', isbn: '9780525478812', price: 339, image: 'images/book-covers/The_Fault_in_Our_Sta_17.png', description: 'Two teens fall in love despite illness.' },
+            { id: 18, name: 'Gone Girl', author: 'Gillian Flynn', publicationYear: 2012, genre: 'Thriller', publisher: 'Crown Publishing Group', isbn: '9780307588371', price: 379, image: 'images/book-covers/Gone_Girl_18.png', description: 'A twisted missing-person mystery.' },
+            { id: 19, name: 'The Chronicles of Narnia', author: 'C.S. Lewis', publicationYear: 1950, genre: 'Fantasy', publisher: 'Geoffrey Bles', isbn: '9780066238500', price: 429, image: 'images/book-covers/The_Chronicles_of_Na_19.png', description: 'Children discover a magical world.' },
+            { id: 20, name: 'Dracula', author: 'Bram Stoker', publicationYear: 1897, genre: 'Horror', publisher: 'Archibald Constable and Company', isbn: '9780486411095', price: 339, image: 'images/book-covers/Dracula_20.png', description: 'The iconic vampire tale.' },
+            { id: 21, name: 'Frankenstein', author: 'Mary Shelley', publicationYear: 1818, genre: 'Gothic Fiction', publisher: 'Lackington, Hughes, Harding, Mavor & Jones', isbn: '9780486282114', price: 339, image: 'images/book-covers/Frankenstein_21.png', description: 'A scientist creates a monster.' },
+            { id: 22, name: 'The Odyssey', author: 'Homer', publicationYear: -700, genre: 'Epic Poetry', publisher: 'Ancient Greece', isbn: '9780140268867', price: 329, image: 'images/book-covers/The_Odyssey_22.png', description: 'Odysseus journeys home after war.' },
+            { id: 23, name: 'Crime and Punishment', author: 'Fyodor Dostoevsky', publicationYear: 1866, genre: 'Psychological Fiction', publisher: 'The Russian Messenger', isbn: '9780143058144', price: 369, image: 'images/book-covers/Crime_and_Punishment_23.png', description: 'A man struggles with guilt after murder.' },
+            { id: 24, name: 'War and Peace', author: 'Leo Tolstoy', publicationYear: 1869, genre: 'Historical Fiction', publisher: 'The Russian Messenger', isbn: '9780199232765', price: 439, image: 'images/book-covers/War_and_Peace_24.png', description: 'Russian society during the Napoleonic Wars.' },
+            { id: 25, name: 'The Shining', author: 'Stephen King', publicationYear: 1977, genre: 'Horror', publisher: 'Doubleday', isbn: '9780307743657', price: 359, image: 'images/book-covers/The_Shining_25.png', description: 'A haunted hotel drives a man insane.' }
         ];
 
-        let currentProduct = null;
-        let currentQuantity = 1;
-
-        // Get product from URL parameter
-        function getProductFromURL() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const productId = parseInt(urlParams.get('id')) || 1;
-            return products.find(p => p.id === productId) || products[0];
+        function getCart() {
+            return JSON.parse(localStorage.getItem(cartKey) || '[]');
         }
 
-        // Generate star rating HTML
-        function generateStars(rating) {
-            const fullStars = Math.floor(rating);
-            const hasHalfStar = rating % 1 >= 0.5;
-            let stars = '';
-            
-            for (let i = 0; i < fullStars; i++) {
-                stars += '<i class="fas fa-star star"></i>';
-            }
-            if (hasHalfStar) {
-                stars += '<i class="fas fa-star-half-alt star"></i>';
-            }
-            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-            for (let i = 0; i < emptyStars; i++) {
-                stars += '<i class="far fa-star star"></i>';
-            }
-            
-            return stars;
+        function saveCart(cart) {
+            localStorage.setItem(cartKey, JSON.stringify(cart));
         }
 
-        // Load product details
-        function loadProduct() {
-            currentProduct = getProductFromURL();
-            
-            // Update page title
-            document.getElementById('pageTitle').textContent = `Lushlather - ${currentProduct.name}`;
-            
-            // Update product information
-            document.getElementById('productName').textContent = currentProduct.name;
-            document.getElementById('productStars').innerHTML = generateStars(currentProduct.rating);
-            document.getElementById('productReviews').textContent = `(${currentProduct.reviews} reviews)`;
-            document.getElementById('productPrice').textContent = currentProduct.price;
-            document.getElementById('productDescription').textContent = currentProduct.description;
-            document.getElementById('ingredientsList').textContent = currentProduct.ingredients;
-            
-            // Update badges
-            const badgesContainer = document.getElementById('productBadges');
-            if (currentProduct.badge) {
-                badgesContainer.innerHTML = `<span class="badge badge-${currentProduct.badge}">${currentProduct.badge.toUpperCase()}</span>`;
-            }
-            
-            // Update original price if available
-            if (currentProduct.originalPrice) {
-                document.getElementById('originalPrice').textContent = `₹${currentProduct.originalPrice}`;
-                document.getElementById('originalPrice').style.display = 'inline';
-            }
-            
-            // Update main image
-            const mainImage = document.getElementById('mainImage');
-            if (mainImage) {
-                mainImage.src = currentProduct.image;
-                mainImage.alt = currentProduct.name;
-                mainImage.onerror = function() {
-                    console.log('Main image failed to load:', currentProduct.image);
-                    this.src = 'https://picsum.photos/seed/soap-placeholder/400/400.jpg';
-                };
-            }
-            
-            // Load features
-            const featuresList = document.getElementById('featureList');
-            featuresList.innerHTML = currentProduct.features.map(feature => 
-                `<li class="feature-item">
-                    <i class="fas fa-check-circle feature-icon"></i>
-                    ${feature}
-                </li>`
-            ).join('');
-            
-            // Load related products
-            loadRelatedProducts();
-            
-            // Load sample reviews
-            loadSampleReviews();
+        function getBookId() {
+            return parseInt(new URLSearchParams(window.location.search).get('id')) || 1;
         }
 
-        // Load related products
-        function loadRelatedProducts() {
+        function loadBook() {
+            const id = getBookId();
+            const book = products.find(item => item.id === id) || products[0];
+            document.getElementById('pageTitle').textContent = `Timeless Tales | ${book.name}`;
+            document.getElementById('bookName').textContent = book.name;
+            document.getElementById('bookAuthor').textContent = book.author;
+            document.getElementById('bookGenre').textContent = book.genre;
+            document.getElementById('bookPublication').textContent = book.publicationYear;
+            document.getElementById('bookPublisher').textContent = book.publisher;
+            document.getElementById('bookISBN').textContent = book.isbn;
+            document.getElementById('bookPrice').textContent = `₹${book.price}`;
+            document.getElementById('bookDescription').textContent = book.description;
+            document.getElementById('mainImage').src = book.image;
+            renderRelated(book.id);
+        }
+
+        function renderRelated(currentId) {
             const relatedGrid = document.getElementById('relatedGrid');
-            const relatedProducts = products.filter(p => p.id !== currentProduct.id && p.category === currentProduct.category).slice(0, 4);
-            
-            relatedGrid.innerHTML = relatedProducts.map(product => `
-                <div class="related-card" onclick="window.location.href='product-detail.html?id=${product.id}'">
-                    <img src="${product.image}" alt="${product.name}" class="related-image">
-                    <div class="related-info">
-                        <h3 class="related-name">${product.name}</h3>
-                        <div class="related-price">₹${product.price}</div>
+            if (!relatedGrid) return;
+            relatedGrid.innerHTML = products.filter(book => book.id !== currentId).slice(0, 4).map(book => `
+                <div class="related-card">
+                    <img src="${book.image}" alt="${book.name}">
+                    <div class="related-body">
+                        <div class="related-title">${book.name}</div>
+                        <div class="related-author">by ${book.author}</div>
+                        <a class="related-link" href="product-detail.html?id=${book.id}">View details</a>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Load sample reviews
-        function loadSampleReviews() {
-            const reviewsList = document.getElementById('reviewsList');
-            const sampleReviews = [
-                { name: 'Priya Sharma', rating: 5, comment: 'Amazing quality! My skin feels so soft and refreshed.', date: '2024-01-15' },
-                { name: 'Rahul Patel', rating: 4, comment: 'Great product with natural ingredients. Highly recommend!', date: '2024-01-10' },
-                { name: 'Anjali Gupta', rating: 5, comment: 'Perfect for my sensitive skin. Love the fragrance!', date: '2024-01-05' }
-            ];
-            
-            reviewsList.innerHTML = sampleReviews.map(review => `
-                <div style="border-bottom: 1px solid #e9ecef; padding: 20px 0;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                        <strong>${review.name}</strong>
-                        <span>${generateStars(review.rating)}</span>
-                    </div>
-                    <p style="color: #6c757d; margin-bottom: 5px;">${review.comment}</p>
-                    <small style="color: #999;">${review.date}</small>
-                </div>
-            `).join('');
-        }
-
-        // Quantity controls
-        function changeQuantity(change) {
-            const input = document.getElementById('quantityInput');
-            const newValue = parseInt(input.value) + change;
-            if (newValue >= 1 && newValue <= 10) {
-                input.value = newValue;
-                currentQuantity = newValue;
-            }
-        }
-
-        // Tab functionality
-        function showTab(tabName) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Show selected tab
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        // Cart functionality
         function addToCart() {
-            const product = {
-                ...currentProduct,
-                quantity: currentQuantity
-            };
-            
-            // Get existing cart from localStorage
-            let cart = JSON.parse(localStorage.getItem('lushlatherCart') || '[]');
-            
-            // Check if product already exists in cart
-            const existingItem = cart.find(item => item.id === product.id);
-            if (existingItem) {
-                existingItem.quantity += currentQuantity;
+            const id = getBookId();
+            const book = products.find(item => item.id === id);
+            if (!book) return;
+            const cart = getCart();
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.quantity += 1;
             } else {
-                cart.push(product);
+                cart.push({ id: book.id, name: book.name, author: book.author, price: book.price, image: book.image, quantity: 1 });
             }
-            
-            // Save to localStorage
-            localStorage.setItem('lushlatherCart', JSON.stringify(cart));
-            
-            alert(`${currentProduct.name} (${currentQuantity}x) added to cart!`);
+            saveCart(cart);
+            alert(`${book.name} added to cart.`);
         }
 
-        function addToWishlist() {
-            alert(`${currentProduct.name} added to wishlist!`);
-        }
+        document.addEventListener('DOMContentLoaded', loadBook);
+    </script>
 
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Product detail page loaded');
-            console.log('URL params:', window.location.search);
-            loadProduct();
-            console.log('Current product after loading:', currentProduct);
+    <script>
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('pageLoader');
+            if (loader) {
+                loader.classList.add('loaded');
+                setTimeout(() => loader.remove(), 600);
+            }
         });
     </script>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="soap-simple.html" class="footer-link">Shop</a>
-                <a href="about.html" class="footer-link">About</a>
-                <a href="contact.html" class="footer-link">Contact</a>
-                <a href="privacy.html" class="footer-link">Privacy Policy</a>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Lushlather Premium Soaps. All rights reserved.</p>
-                <p>Made with ❤️ in India</p>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>

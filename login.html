@@ -3,696 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lushlather - Login</title>
+    <title>Timeless Tales | Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="images/timeless-tales-favicon.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#7B2CBF">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%); color: #111827; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .auth-wrapper { width: 100%; max-width: 420px; background: white; border-radius: 28px; box-shadow: 0 20px 60px rgba(15,23,42,0.12); padding: 40px; }
+        .logo { display: inline-flex; align-items: center; gap: 10px; font-size: 1.8rem; font-weight: 800; color: #1f2937; text-decoration: none; margin-bottom: 24px; }
+        .auth-title { font-size: 2rem; margin-bottom: 10px; }
+        .auth-subtitle { color: #6b7280; margin-bottom: 28px; }
+        .field { margin-bottom: 18px; }
+        .field label { display: block; margin-bottom: 8px; font-weight: 600; color: #374151; }
+        .field input { width: 100%; padding: 14px 16px; border: 1px solid #d1d5db; border-radius: 16px; }
+        .btn { width: 100%; padding: 14px 16px; border: none; border-radius: 16px; background: #4338ca; color: white; font-weight: 700; cursor: pointer; margin-top: 12px; }
+        .links { margin-top: 20px; text-align: center; color: #6b7280; }
+        .links a { color: #4338ca; text-decoration: none; font-weight: 600; }
+    
+        /* Timeless Tales brand overrides */
+        :root {
+            --tt-bg: #F8F5E9;
+            --tt-surface: #FFFFFF;
+            --tt-surface-soft: #F4EDFA;
+            --tt-purple: #7B2CBF;
+            --tt-purple-light: #C77DFF;
+            --tt-green: #52B788;
+            --tt-text: #1D1D35;
+            --tt-muted: #5A5B7A;
+            --tt-border: rgba(123,44,191,0.14);
         }
-        
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            color: #2c3e50;
+            background: var(--tt-bg) !important;
+            color: var(--tt-text) !important;
+            font-family: 'Poppins', sans-serif !important;
         }
-        
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        header, footer, .card, .detail-panel, .order-summary, .image-card, .related-card, .auth-wrapper, .post-card, .cart-items, .summary-row, .feature-card, .contact-grid > div, .cart-item, .product-grid > .card {
+            background: var(--tt-surface) !important;
+            border: 1px solid var(--tt-border) !important;
+            box-shadow: 0 24px 60px rgba(123,44,191,0.08) !important;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .header-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 0;
-        }
-        
-        .logo {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #9b59b6;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: transform 0.3s ease;
-        }
-        
-        .logo:hover {
-            transform: scale(1.05);
-        }
-        
-        .logo-icon {
-            font-size: 2.5rem;
-            filter: drop-shadow(0 2px 4px rgba(155, 89, 182, 0.3));
-        }
-        
-        .nav-menu {
-            display: flex;
-            gap: 35px;
-            align-items: center;
-        }
-        
-        .nav-link {
-            color: #2c3e50;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 10px 18px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(155, 89, 182, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .nav-link:hover::before {
-            left: 100%;
-        }
-        
-        .nav-link:hover {
-            color: #9b59b6;
-        }
-        
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: #2c3e50;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 5px;
-        }
-        
-        .auth-container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-        }
-        
-        .auth-card {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-            width: 100%;
-            max-width: 450px;
-            transform: translateY(0);
-            transition: transform 0.3s ease;
-        }
-        
-        .auth-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .auth-header {
-            background: linear-gradient(135deg, #9b59b6 0%, #e91e63 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-        
-        .auth-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        
-        .auth-subtitle {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-        
-        .auth-body {
-            padding: 40px 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #2c3e50;
-            font-size: 0.95rem;
-        }
-        
-        .form-input {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: #f8f9fa;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-color: #9b59b6;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.1);
-        }
-        
-        .form-input.error {
-            border-color: #e74c3c;
-            background: #fdf2f2;
-        }
-        
-        .error-message {
-            color: #e74c3c;
-            font-size: 0.85rem;
-            margin-top: 5px;
-            display: none;
-        }
-        
-        .form-checkbox {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-        
-        .form-checkbox input {
-            margin-right: 10px;
-            width: 18px;
-            height: 18px;
-            accent-color: #9b59b6;
-        }
-        
-        .form-checkbox label {
-            font-size: 0.9rem;
-            color: #6c757d;
-            cursor: pointer;
-        }
-        
-        .form-checkbox a {
-            color: #9b59b6;
-            text-decoration: none;
-            font-weight: 600;
-            margin-left: 5px;
-        }
-        
-        .form-checkbox a:hover {
-            text-decoration: underline;
-        }
-        
-        .btn {
-            width: 100%;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #9b59b6 0%, #e91e63 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
-        }
-        
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-        
-        .divider {
-            text-align: center;
-            margin: 30px 0;
-            position: relative;
-        }
-        
-        .divider::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: #e9ecef;
-        }
-        
-        .divider span {
-            background: white;
-            padding: 0 15px;
-            color: #6c757d;
-            font-size: 0.9rem;
-            position: relative;
-        }
-        
-        .social-login {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        
-        .social-btn {
-            flex: 1;
-            padding: 12px;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            background: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            color: #2c3e50;
-            text-decoration: none;
-        }
-        
-        .social-btn:hover {
-            border-color: #9b59b6;
-            background: #f8f9fa;
-            transform: translateY(-2px);
-        }
-        
-        .social-btn i {
-            font-size: 1.2rem;
-        }
-        
-        .social-btn.google i {
-            color: #ea4335;
-        }
-        
-        .social-btn.facebook i {
-            color: #1877f2;
-        }
-        
-        .auth-footer {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #e9ecef;
-        }
-        
-        .auth-footer p {
-            color: #6c757d;
-            font-size: 0.9rem;
-        }
-        
-        .auth-footer a {
-            color: #9b59b6;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        
-        .auth-footer a:hover {
-            text-decoration: underline;
-        }
-        
-        .alert {
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            display: none;
-            animation: slideDown 0.3s ease;
-        }
-        
-        .alert-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .alert-error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Tablet Responsive Styles */
-        @media (max-width: 1024px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            .auth-card {
-                max-width: 400px;
-            }
-            
-            .auth-header {
-                padding: 35px 25px;
-            }
-            
-            .auth-body {
-                padding: 35px 25px;
-            }
-        }
-        
-        /* Mobile Responsive Styles */
-        @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 280px;
-                height: 100vh;
-                background: white;
-                flex-direction: column;
-                gap: 0;
-                padding: 80px 20px 20px;
-                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
-                transition: right 0.3s ease;
-                z-index: 999;
-            }
-            
-            .nav-menu.active {
-                right: 0;
-            }
-            
-            .nav-link {
-                width: 100%;
-                text-align: center;
-                padding: 15px;
-                border-radius: 10px;
-                margin-bottom: 10px;
-            }
-            
-            .container {
-                padding: 0 10px;
-            }
-            
-            .logo {
-                font-size: 1.8rem;
-            }
-            
-            .header-container {
-                padding: 5px 0;
-            }
-            
-            .auth-container {
-                padding: 20px 15px;
-            }
-            
-            .auth-card {
-                max-width: 100%;
-            }
-            
-            .auth-header {
-                padding: 30px 20px;
-            }
-            
-            .auth-title {
-                font-size: 1.8rem;
-            }
-            
-            .auth-body {
-                padding: 30px 20px;
-            }
-            
-            .form-input {
-                padding: 12px 15px;
-                font-size: 0.95rem;
-            }
-            
-            .btn {
-                padding: 12px 25px;
-                font-size: 1rem;
-            }
-            
-            .social-login {
-                flex-direction: column;
-            }
-        }
-        
-        /* Small Mobile Responsive Styles */
-        @media (max-width: 480px) {
-            .logo {
-                font-size: 1.5rem;
-            }
-            
-            .logo-icon {
-                font-size: 2rem;
-            }
-            
-            .auth-container {
-                padding: 15px 10px;
-            }
-            
-            .auth-header {
-                padding: 25px 15px;
-            }
-            
-            .auth-title {
-                font-size: 1.5rem;
-            }
-            
-            .auth-body {
-                padding: 25px 15px;
-            }
-            
-            .form-input {
-                padding: 10px 12px;
-                font-size: 0.9rem;
-            }
-            
-            .btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-        }
+        .logo-img { width: 44px; height: auto; display: inline-block; }
+        .logo { color: var(--tt-text) !important; display: inline-flex !important; align-items: center !important; gap: 10px !important; }
+        .nav a { color: var(--tt-text) !important; padding: 10px 16px !important; border-radius: 999px !important; transition: background 0.2s ease !important; }
+        .nav a:hover { background: rgba(123,44,191,0.1) !important; }
+        .btn-primary, .small-btn, .checkout-button, .btn { background: linear-gradient(135deg, var(--tt-purple), var(--tt-purple-light)) !important; color: white !important; }
+        .btn-secondary { background: rgba(123,44,191,0.08) !important; color: var(--tt-purple) !important; border: 1px solid rgba(123,44,191,0.18) !important; }
+        .search-card, .field input, .field select, .field textarea, .box, .cart-item { border-radius: 18px !important; }
+        .page-loader { position: fixed; inset: 0; background: rgba(248,245,233,0.96); display: flex; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.4s ease; }
+        .page-loader.loaded { opacity: 0; pointer-events: none; }
+        .loader-card { background: white; max-width: 320px; width: 100%; border-radius: 28px; padding: 30px; text-align: center; box-shadow: 0 30px 80px rgba(123,44,191,0.14); border: 1px solid rgba(123,44,191,0.12); }
+        .loader-card img { width: 72px; margin-bottom: 18px; }
+        .loader-ring { width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 50%; border: 5px solid rgba(123,44,191,0.18); border-top-color: var(--tt-purple); animation: spin 1s linear infinite; }
+        .loader-text { margin-top: 10px; color: var(--tt-muted); font-size: 0.98rem; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header-container">
-                <a href="soap-simple.html" class="logo">
-                    <span class="logo-icon">🌿</span>
-                    <span>Lushlather</span>
-                </a>
-                <nav class="nav-menu">
-                    <a href="soap-simple.html" class="nav-link">Shop</a>
-                    <a href="cart.html" class="nav-link">Cart</a>
-                    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </nav>
-            </div>
-        </div>
-    </header>
 
-    <main class="auth-container">
-        <div class="container">
-            <div class="auth-card">
-                <div class="auth-header">
-                    <h1 class="auth-title">Welcome Back</h1>
-                    <p class="auth-subtitle">Sign in to your Lushlather account</p>
-                </div>
-                
-                <div class="auth-body">
-                    <div id="alertMessage" class="alert"></div>
-                    
-                    <form id="loginForm" onsubmit="handleLogin(event)">
-                        <div class="form-group">
-                            <label class="form-label" for="email">Email Address</label>
-                            <input type="email" id="email" class="form-input" placeholder="john@example.com" required>
-                            <div class="error-message" id="emailError">Please enter a valid email address</div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label" for="password">Password</label>
-                            <input type="password" id="password" class="form-input" placeholder="••••••••" required>
-                            <div class="error-message" id="passwordError">Password must be at least 6 characters</div>
-                        </div>
-                        
-                        <div class="form-checkbox">
-                            <input type="checkbox" id="remember" name="remember">
-                            <label for="remember">Remember me</label>
-                            <a href="#forgot-password">Forgot password?</a>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-sign-in-alt"></i> Sign In
-                        </button>
-                    </form>
-                    
-                    <div class="divider">
-                        <span>OR</span>
-                    </div>
-                    
-                    <div class="social-login">
-                        <a href="#" class="social-btn google" onclick="handleSocialLogin('google')">
-                            <i class="fab fa-google"></i>
-                            Google
-                        </a>
-                        <a href="#" class="social-btn facebook" onclick="handleSocialLogin('facebook')">
-                            <i class="fab fa-facebook-f"></i>
-                            Facebook
-                        </a>
-                    </div>
-                    
-                    <div class="auth-footer">
-                        <p>Don't have an account? <a href="register.html">Sign up</a></p>
-                    </div>
-                </div>
-            </div>
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-card">
+            <img src="images/timeless-tales-logo.svg" alt="Timeless Tales logo">
+            <div class="loader-ring"></div>
+            <div class="loader-text">Timeless Tales — A magical world of books and stories.</div>
         </div>
-    </main>
+    </div>
+
+    <div class="auth-wrapper">
+        <a class="logo" href="index.html"><img class="logo-img" src="images/timeless-tales-logo.svg" alt="Timeless Tales logo"> Timeless Tales</a>
+        <div class="auth-title">Welcome back</div>
+        <p class="auth-subtitle">Sign in to continue shopping books and tracking your orders.</p>
+        <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com">
+        </div>
+        <div class="field">
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Enter your password">
+        </div>
+        <button class="btn" onclick="alert('Login feature is not implemented in this demo yet.')">Sign In</button>
+        <p class="links">Don’t have an account? <a href="register.html">Register</a></p>
+    </div>
 
     <script>
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const navMenu = document.querySelector('.nav-menu');
-            navMenu.classList.toggle('active');
-        }
-
-        // Authentication functions
-        function handleLogin(event) {
-            event.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const remember = document.getElementById('remember').checked;
-            
-            // Reset errors
-            document.querySelectorAll('.form-input').forEach(input => {
-                input.classList.remove('error');
-            });
-            document.querySelectorAll('.error-message').forEach(error => {
-                error.style.display = 'none';
-            });
-            
-            // Validate
-            let isValid = true;
-            
-            if (!validateEmail(email)) {
-                document.getElementById('email').classList.add('error');
-                document.getElementById('emailError').style.display = 'block';
-                isValid = false;
-            }
-            
-            if (password.length < 6) {
-                document.getElementById('password').classList.add('error');
-                document.getElementById('passwordError').style.display = 'block';
-                isValid = false;
-            }
-            
-            if (!isValid) return;
-            
-            // Simulate login (in real app, this would be an API call)
-            const user = {
-                id: 1,
-                name: 'John Doe',
-                email: email,
-                avatar: 'https://picsum.photos/seed/user1/100/100.jpg'
-            };
-            
-            // Store user session
-            if (remember) {
-                localStorage.setItem('user', JSON.stringify(user));
-            } else {
-                sessionStorage.setItem('user', JSON.stringify(user));
-            }
-            
-            // Show success message
-            showAlert('Login successful! Redirecting...', 'success');
-            
-            // Redirect to profile or previous page
-            setTimeout(() => {
-                const returnUrl = new URLSearchParams(window.location.search).get('return') || 'profile.html';
-                window.location.href = returnUrl;
-            }, 1500);
-        }
-        
-        function handleSocialLogin(provider) {
-            // Simulate social login
-            showAlert(`Connecting to ${provider}...`, 'success');
-            
-            setTimeout(() => {
-                const user = {
-                    id: 1,
-                    name: `${provider.charAt(0).toUpperCase() + provider.slice(1)} User`,
-                    email: `user@${provider}.com`,
-                    avatar: `https://picsum.photos/seed/${provider}user/100/100.jpg`
-                };
-                
-                localStorage.setItem('user', JSON.stringify(user));
-                window.location.href = 'profile.html';
-            }, 1500);
-        }
-        
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
-        
-        function showAlert(message, type) {
-            const alertDiv = document.getElementById('alertMessage');
-            alertDiv.textContent = message;
-            alertDiv.className = `alert alert-${type}`;
-            alertDiv.style.display = 'block';
-            
-            setTimeout(() => {
-                alertDiv.style.display = 'none';
-            }, 5000);
-        }
-        
-        // Check if user is already logged in
-        window.addEventListener('DOMContentLoaded', () => {
-            const user = localStorage.getItem('user') || sessionStorage.getItem('user');
-            if (user) {
-                // User is already logged in, redirect to profile
-                window.location.href = 'profile.html';
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('pageLoader');
+            if (loader) {
+                loader.classList.add('loaded');
+                setTimeout(() => loader.remove(), 600);
             }
         });
     </script>
+
 </body>
 </html>

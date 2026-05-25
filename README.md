@@ -1,6 +1,6 @@
-# ECommerce-SOAP-MERN
+# Timeless Tales Bookstore
 
-This repository contains a static e-commerce frontend (HTML/CSS/JS) with accompanying deployment and DevOps artifacts (Dockerfile, docker-compose, Kubernetes manifests, CI/CD scripts). It appears to be a demo website for showcasing SOAP integration and cloud-native deployment patterns.
+This repository contains a static bookstore frontend for Timeless Tales, rebuilt as a modern HTML/CSS/JavaScript site with supporting deployment and DevOps artifacts (Dockerfile, docker-compose, Kubernetes manifests, CI/CD scripts).
 
 What this repo contains
 - Static website pages: `cart.html`, `login.html`, `register.html`, `product-detail.html`, `payment.html`, `profile.html`, etc.
@@ -17,7 +17,9 @@ cd ECommerce-SOAP-MERN
 python -m http.server 8000
 ```
 
-2. Open your browser to `http://localhost:8000` and navigate to the desired HTML page (e.g., `cart.html`).
+2. Open your browser to `http://localhost:8000` to reach the shop homepage (`index.html` redirects to `soap-simple.html`).
+
+The site also includes simple informational pages: `about.html`, `contact.html`, and `privacy.html`.
 
 Docker (optional)
 

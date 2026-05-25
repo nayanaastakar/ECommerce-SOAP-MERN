@@ -1,0 +1,153 @@
+Books Collection Summary
+========================================
+
+1. To Kill a Mockingbird by Harper Lee
+   Genre: Fiction
+   Published: 1960
+   ISBN: 9780061120084
+   Description: A novel about racial injustice in the Deep South.
+
+2. 1984 by George Orwell
+   Genre: Dystopian
+   Published: 1949
+   ISBN: 9780451524935
+   Description: A story of totalitarianism and surveillance.
+
+3. Pride and Prejudice by Jane Austen
+   Genre: Romance
+   Published: 1813
+   ISBN: 9780141439518
+   Description: A classic romance and social commentary.
+
+4. The Great Gatsby by F. Scott Fitzgerald
+   Genre: Classic
+   Published: 1925
+   ISBN: 9780743273565
+   Description: A tale of wealth and the American Dream.
+
+5. Moby-Dick by Herman Melville
+   Genre: Adventure
+   Published: 1851
+   ISBN: 9781503280786
+   Description: Captain Ahab’s obsessive quest for a whale.
+
+6. The Hobbit by J.R.R. Tolkien
+   Genre: Fantasy
+   Published: 1937
+   ISBN: 9780547928227
+   Description: Bilbo Baggins goes on an epic adventure.
+
+7. Harry Potter and the Sorcerer's Stone by J.K. Rowling
+   Genre: Fantasy
+   Published: 1997
+   ISBN: 9780590353427
+   Description: A young wizard discovers his destiny.
+
+8. The Catcher in the Rye by J.D. Salinger
+   Genre: Fiction
+   Published: 1951
+   ISBN: 9780316769488
+   Description: Teenage rebellion and alienation.
+
+9. The Alchemist by Paulo Coelho
+   Genre: Adventure
+   Published: 1988
+   ISBN: 9780061122415
+   Description: A shepherd follows his dream to Egypt.
+
+10. The Da Vinci Code by Dan Brown
+   Genre: Thriller
+   Published: 2003
+   ISBN: 9780307474278
+   Description: A mystery involving secret societies.
+
+11. The Lord of the Rings by J.R.R. Tolkien
+   Genre: Fantasy
+   Published: 1954
+   ISBN: 9780618640157
+   Description: An epic battle over the One Ring.
+
+12. Brave New World by Aldous Huxley
+   Genre: Science Fiction
+   Published: 1932
+   ISBN: 9780060850524
+   Description: A futuristic society driven by technology.
+
+13. The Kite Runner by Khaled Hosseini
+   Genre: Drama
+   Published: 2003
+   ISBN: 9781594631931
+   Description: Friendship and redemption in Afghanistan.
+
+14. Life of Pi by Yann Martel
+   Genre: Adventure
+   Published: 2001
+   ISBN: 9780156027328
+   Description: A boy survives at sea with a tiger.
+
+15. The Book Thief by Markus Zusak
+   Genre: Historical Fiction
+   Published: 2005
+   ISBN: 9780375842207
+   Description: A girl steals books during WWII.
+
+16. The Hunger Games by Suzanne Collins
+   Genre: Dystopian
+   Published: 2008
+   ISBN: 9780439023528
+   Description: A deadly televised survival competition.
+
+17. The Fault in Our Stars by John Green
+   Genre: Young Adult
+   Published: 2012
+   ISBN: 9780525478812
+   Description: Two teens fall in love despite illness.
+
+18. Gone Girl by Gillian Flynn
+   Genre: Thriller
+   Published: 2012
+   ISBN: 9780307588371
+   Description: A twisted missing-person mystery.
+
+19. The Chronicles of Narnia by C.S. Lewis
+   Genre: Fantasy
+   Published: 1950
+   ISBN: 9780066238500
+   Description: Children discover a magical world.
+
+20. Dracula by Bram Stoker
+   Genre: Horror
+   Published: 1897
+   ISBN: 9780486411095
+   Description: The iconic vampire tale.
+
+21. Frankenstein by Mary Shelley
+   Genre: Gothic Fiction
+   Published: 1818
+   ISBN: 9780486282114
+   Description: A scientist creates a monster.
+
+22. The Odyssey by Homer
+   Genre: Epic Poetry
+   Published: -700
+   ISBN: 9780140268867
+   Description: Odysseus journeys home after war.
+
+23. Crime and Punishment by Fyodor Dostoevsky
+   Genre: Psychological Fiction
+   Published: 1866
+   ISBN: 9780143058144
+   Description: A man struggles with guilt after murder.
+
+24. War and Peace by Leo Tolstoy
+   Genre: Historical Fiction
+   Published: 1869
+   ISBN: 9780199232765
+   Description: Russian society during the Napoleonic Wars.
+
+25. The Shining by Stephen King
+   Genre: Horror
+   Published: 1977
+   ISBN: 9780307743657
+   Description: A haunted hotel drives a man insane.
+
